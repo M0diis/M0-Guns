@@ -1,0 +1,12 @@
+name: M0-Guns
+main: me.m0dii.guns.Main
+version: 1.0
+description: Guns Plugin
+commands:
+   guns:
+      description: Main Command
+      usage: /guns
+permissions:
+  m0guns.admin:
+    description: Usage of guns command
+    default: false
