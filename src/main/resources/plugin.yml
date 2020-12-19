@@ -2,6 +2,7 @@ name: M0-Guns
 main: me.m0dii.guns.Main
 version: 1.0
 description: Guns Plugin
+api-version: 1.16
 commands:
    guns:
       description: Main Command
