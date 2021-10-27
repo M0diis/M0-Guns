@@ -7,29 +7,51 @@ import org.bukkit.entity.Player;
 
 public class Cooldowns {
 	
-	public static HashMap<UUID, Long> COOLDOWNS;
+	private final M0Guns plugin;
 	
-	public static long SNIPER_COOLDOWN = 0;
-	
-	public static void setupcooldown()
-	{
-		COOLDOWNS = new HashMap<>();
+	public Cooldowns(M0Guns plugin) {
+		this.plugin = plugin;
 	}
 	
-	public static void setCooldown(Player player, long duration)
+	private HashMap<UUID, Long> cooldowns = new HashMap<>();
+	
+	private long sniperCooldown = 0;
+	
+	public void setCooldown(Player player, long duration)
 	{
 		double cd = System.currentTimeMillis() + (duration * 1000);
 		
-		COOLDOWNS.put(player.getUniqueId(), (long) cd);
+		cooldowns.put(player.getUniqueId(), (long) cd);
 	}
 	
-	public static long getCooldown(Player player, HashMap<UUID, Long> map)
+	public long getCooldown(Player player)
 	{
-		return (map.get(player.getUniqueId()) / 1000) - (System.currentTimeMillis() / 1000);
+		return (cooldowns.get(player.getUniqueId()) / 1000) - (System.currentTimeMillis() / 1000);
 	}
 	
-	public static boolean checkCooldown(Player player)
+	public boolean checkCooldown(Player player)
 	{
-		return !COOLDOWNS.containsKey(player.getUniqueId()) || COOLDOWNS.get(player.getUniqueId()) <= System.currentTimeMillis();
+		return !cooldowns.containsKey(player.getUniqueId())
+				|| cooldowns.get(player.getUniqueId()) <= System.currentTimeMillis();
+	}
+	
+	public HashMap<UUID, Long> getCooldowns()
+	{
+		return cooldowns;
+	}
+	
+	public void setCooldowns(HashMap<UUID, Long> cds)
+	{
+		this.cooldowns = cds;
+	}
+	
+	public long getSniperCooldown()
+	{
+		return sniperCooldown;
+	}
+	
+	public void setSniperCooldown(long sniperCooldown)
+	{
+		this.sniperCooldown = sniperCooldown;
 	}
 }

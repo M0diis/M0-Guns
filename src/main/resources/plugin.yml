@@ -1,5 +1,5 @@
 name: M0-Guns
-main: me.m0dii.guns.Main
+main: me.m0dii.guns.M0Guns
 version: 1.0
 description: Guns Plugin
 api-version: 1.16
